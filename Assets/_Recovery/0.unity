@@ -45614,7 +45614,6 @@ GameObject:
   - component: {fileID: 594291353}
   - component: {fileID: 594291354}
   - component: {fileID: 594291355}
-  - component: {fileID: 594291356}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -45875,7 +45874,7 @@ MonoBehaviour:
     m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
+  m_DefaultActionMap: 
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 330585545}
 --- !u!114 &594291355
@@ -45894,22 +45893,6 @@ MonoBehaviour:
   muzzle: {fileID: 2009592020}
   range: 100
   fireRate: 0.2
---- !u!114 &594291356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 594291347}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2635e452a6dd8ac49afb8765aec0a3f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CameraModeSwitcher
-  pivot: {fileID: 2040670529}
-  thirdPersonOffset: {x: 0, y: 0, z: -6}
-  firstPersonOffset: {x: 0, y: 0, z: 0}
-  smoothSpeed: 10
 --- !u!1 &598451529
 GameObject:
   m_ObjectHideFlags: 0

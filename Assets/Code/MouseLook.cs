@@ -21,12 +21,12 @@ public class MouseLook : MonoBehaviour
         float mouseX = mouseDelta.x * sensitivity;
         float mouseY = mouseDelta.y * sensitivity;
 
-        // vertical look (camera pivot)
+        // vertical (camera pivot)
         xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -60f, 60f);
+        xRotation = Mathf.Clamp(xRotation, -75f, 75f);
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
-        // horizontal look (player)
+        // horizontal (player body)
         player.Rotate(Vector3.up * mouseX);
     }
 }

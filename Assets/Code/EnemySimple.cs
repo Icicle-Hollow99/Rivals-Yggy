@@ -26,22 +26,32 @@ public class EnemySimple : MonoBehaviour
         transform.LookAt(player);
     }
 
-    void OnCollisionStay(Collision collision)
+   void OnCollisionStay(Collision collision)
+{
+    if (collision.gameObject.CompareTag("Player"))
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (Time.time - lastAttackTime >= attackCooldown)
         {
-            if (Time.time - lastAttackTime >= attackCooldown)
-            {
-                lastAttackTime = Time.time;
+            lastAttackTime = Time.time;
 
-                PlayerHealth hp = collision.gameObject.GetComponent<PlayerHealth>();
-                if (hp)
+            PlayerHealth hp = collision.gameObject.GetComponent<PlayerHealth>();
+            if (hp)
+            {
+                hp.TakeDamage(damage);
+
+                Rigidbody playerRb = collision.gameObject.GetComponent<Rigidbody>();
+                if (playerRb != null)
                 {
-                    hp.TakeDamage(damage);
+                    // knockback
+                    Vector3 knockDir = (collision.transform.position - transform.position).normalized;
+                    knockDir.y = 0.5f; // a little upward so the player doesn’t get stuck
+                    playerRb.AddForce(knockDir * 5f, ForceMode.Impulse);
                 }
             }
         }
     }
+}
+
 
     public void TakeDamage(float dmg)
     {

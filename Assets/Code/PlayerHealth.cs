@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -17,8 +18,8 @@ public class PlayerHealth : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            Debug.Log("PLAYER DIED");
-            // later: respawn / game over
+            Debug.Log("PLAYER DIED — RESET SCENE");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }

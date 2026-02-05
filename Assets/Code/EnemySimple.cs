@@ -10,9 +10,15 @@ public class EnemySimple : MonoBehaviour
     Transform player;
     float lastAttackTime;
 
+    Animator anim;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
+        anim = GetComponentInChildren<Animator>(); // IMPORTANT
+        EnemyManager.instance.enemyCount++;
+        if (EnemyManager.instance != null)
+        EnemyManager.instance.RegisterEnemy();
     }
 
     void Update()
@@ -26,37 +32,40 @@ public class EnemySimple : MonoBehaviour
         transform.LookAt(player);
     }
 
-   void OnCollisionStay(Collision collision)
-{
-    if (collision.gameObject.CompareTag("Player"))
+    void OnCollisionStay(Collision collision)
     {
-        if (Time.time - lastAttackTime >= attackCooldown)
+        if (!collision.gameObject.CompareTag("Player")) return;
+
+        if (Time.time - lastAttackTime < attackCooldown) return;
+
+        lastAttackTime = Time.time;
+
+        // 🔥 PLAY ATTACK ANIMATION
+        if (anim)
+            anim.SetTrigger("Attack");
+
+        PlayerHealth hp = collision.gameObject.GetComponent<PlayerHealth>();
+        if (hp)
         {
-            lastAttackTime = Time.time;
+            hp.TakeDamage(damage);
 
-            PlayerHealth hp = collision.gameObject.GetComponent<PlayerHealth>();
-            if (hp)
+            Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
+            if (rb)
             {
-                hp.TakeDamage(damage);
-
-                Rigidbody playerRb = collision.gameObject.GetComponent<Rigidbody>();
-                if (playerRb != null)
-                {
-                    // knockback
-                    Vector3 knockDir = (collision.transform.position - transform.position).normalized;
-                    knockDir.y = 0.5f; // a little upward so the player doesn’t get stuck
-                    playerRb.AddForce(knockDir * 5f, ForceMode.Impulse);
-                }
+                Vector3 knockDir = (collision.transform.position - transform.position).normalized;
+                knockDir.y = 0.5f;
+                rb.AddForce(knockDir * 8f, ForceMode.Impulse);
             }
         }
     }
-}
-
 
     public void TakeDamage(float dmg)
+{
+    health -= dmg;
+    if (health <= 0)
     {
-        health -= dmg;
-        if (health <= 0)
-            Destroy(gameObject);
+        EnemyManager.instance.EnemyDied();
+        Destroy(gameObject);
     }
+}
 }

@@ -67,5 +67,5 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "Rivals-Yggy.slnx"
+    "dotnet.defaultSolution": "Yggy.slnx"
 }

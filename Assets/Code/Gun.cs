@@ -7,6 +7,7 @@ public class Gun : MonoBehaviour
     public Transform muzzle;
     public float range = 100f;
     public float fireRate = 0.2f;
+    public float damage = 25f; // 👈 added (that’s it)
 
     float nextFireTime;
 
@@ -21,10 +22,8 @@ public class Gun : MonoBehaviour
     {
         Debug.Log("💥 SHOOT");
 
-        // Ignore player body only
         int mask = ~LayerMask.GetMask("Player");
 
-        // Ray from camera center
         Ray camRay = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         Vector3 aimPoint;
 
@@ -32,17 +31,22 @@ public class Gun : MonoBehaviour
         {
             aimPoint = hit.point;
             Debug.Log("🎯 HIT " + hit.transform.name);
+
+            // 🔥 THIS IS THE ONLY LOGIC ADD
+            EnemySimple enemy = hit.transform.GetComponent<EnemySimple>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(damage);
+            }
         }
         else
         {
             aimPoint = camRay.origin + camRay.direction * range;
         }
 
-        // Shoot from muzzle toward camera aim
         Vector3 dir = (aimPoint - muzzle.position).normalized;
 
         Debug.DrawRay(muzzle.position, dir * range, Color.green, 1f);
-
         DrawTracer(muzzle.position, muzzle.position + dir * range);
     }
 

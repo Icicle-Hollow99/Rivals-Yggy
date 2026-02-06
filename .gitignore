@@ -84,7 +84,7 @@ InitTestScene*.unity*
 /[Aa]ssets/StreamingAssets/aa*
 /[Aa]ssets/AddressableAssetsData/link.xml*
 /[Aa]ssets/Addressables_Temp*
-# By default, Addressables content builds will generate addressables_content_state.bin
+# By default, Ad1313dressables content builds will generate addressables_content_state.bin
 # files in platform-specific subfolders, for example:
 # /Assets/AddressableAssetsData/OSX/addressables_content_state.bin
 /[Aa]ssets/AddressableAssetsData/*/*.bin*
@@ -97,3 +97,10 @@ InitTestScene*.unity*
 
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+Assets/PBS Materials Variety Pack/
+Assets/PBS Materials Variety Pack.meta
+Assets/2_RB_UC3D4+GameDev.tv+Sci+Fi+Starter+Assets/
+Assets/2_RB_UC3D4+GameDev.tv+Sci+Fi+Starter+Assets.meta
+Assets/10_RB_UC3D4+Rocket+Boost+SFX 1/
+Assets/10_RB_UC3D4+Rocket+Boost+SFX 1.meta/
+Assets/10_RB_UC3D4+Rocket+Boost+SFX/

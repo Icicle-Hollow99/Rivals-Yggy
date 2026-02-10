@@ -38,6 +38,8 @@ public class Gun : MonoBehaviour
             {
                 enemy.TakeDamage(damage);
             }
+            FindObjectOfType<CameraFOVKick>()?.Kick();
+
         }
         else
         {

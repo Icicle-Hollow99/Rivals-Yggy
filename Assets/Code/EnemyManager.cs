@@ -22,7 +22,7 @@ public class EnemyManager : MonoBehaviour
 
         if (enemyCount <= 0)
         {
-            Debug.Log("ALL ENEMIES DEAD – YOU WIN 🏆");
+            Debug.Log("ALL ENEMIES DEAD - GO TO THE LAKE");
         }
     }
 }
